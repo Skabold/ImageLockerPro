@@ -1,4 +1,3 @@
----
 service: serverless-react-boilerplate
 frameworkVersion: "3"
 useDotenv: true
@@ -15,15 +14,12 @@ provider:
   timeout: 6
   logRetentionInDays: 7
   lambdaHashingVersion: 20201221 # for upcoming Serverless v3
-
   apiGateway:
     shouldStartNameWithService: true # for upcoming Serverless v3
-
   environment:
     SERVERLESS_PROJECT: ${self:service}
     SERVERLESS_REGION: ${self:provider.region}
     SERVERLESS_STAGE: ${self:provider.stage}
-
     APP_DIST_URL: ${self:custom.distBucketUrl.${self:provider.region}, self:custom.distBucketUrl.default}
     APP_PUBLIC_URL: ${self:custom.distBucketUrl.${self:provider.region}, self:custom.distBucketUrl.default}
     APIGATEWAY_URL:
@@ -43,29 +39,46 @@ plugins:
   - serverless-s3-deploy
 
 functions:
-  serve:
-    # Any web request regardless of path or method will be handled by a single Lambda function
-    handler: handler.serve
+  home:
+    handler: src/server/home.default
     events:
       - http:
           path: /
           method: any
           cors: true
+
+  login:
+    handler: src/server/login.default
+    events:
       - http:
-          path: /{any+}
+          path: /login
+          method: any
+          cors: true
+
+  register:
+    handler: src/server/register.default
+    events:
+      - http:
+          path: /register
+          method: any
+          cors: true
+
+  lock:
+    handler: src/server/lock.default
+    events:
+      - http:
+          path: /lock
           method: any
           cors: true
 
 custom:
   distBucketUrl:
     us-east-1:
-      # us-east-1 uses a different URL format than the other regions
       Fn::Join:
         - ""
         - - https://s3.amazonaws.com/
           - Ref: DistBucket
     default:
-      # All other regions
       Fn::Join:
         - ""
         - - https://s3-
@@ -75,7 +88,6 @@ custom:
 
   scripts:
     hooks:
-      # Build the client-side script before packaging backend code
       package:initialize: "npm run build:browser"
       deploy:finalize: "npx sls s3deploy --stage ${self:provider.stage}"
 
@@ -83,7 +95,6 @@ custom:
     webpackConfig: "webpack.server.config.js"
 
   assets:
-    # Automatically copy distribution folder to S3 stopped working; do it manually (see `scripts.hooks.deploy:finalize`)
     auto: false
     targets:
       - bucket:
@@ -104,14 +115,11 @@ custom:
 
 resources:
   Resources:
-    # Customize the API Gateway resource
     ApiGatewayRestApi:
       Type: AWS::ApiGateway::RestApi
       Properties:
-        # Enable gzip compression
         MinimumCompressionSize: 1000
 
-    # S3 Bucket for the distribution bundles
     DistBucket:
       Type: AWS::S3::Bucket
       DeletionPolicy: Delete
