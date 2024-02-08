@@ -11,7 +11,7 @@ provider:
     name: image-locker-api
 
 functions:
-  lockImage:
+  LockerImagePro:
     handler: index.handler
     events:
       - httpApi:
