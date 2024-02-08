@@ -6,15 +6,7 @@ const app = express();
 app.use(express.json());
 const firebase = require('firebase/compat/app');
 require('firebase/compat/auth');
-const isLoggedIn = require('./middleware/userMiddleware');
 const firebaseConfig = require('./config/firebaseConfig');
-const formData = require('form-data');
-const Mailgun = require('mailgun.js');
-const mailgun = new Mailgun(formData);
-const mg = mailgun.client({
-	username: 'api',
-	key: process.env.EMAIL_API_KEY,
-});
 
 // Initialiser Firebase
 firebase.initializeApp(firebaseConfig);
@@ -32,11 +24,6 @@ app.use(express.json());
 // The lock image route / logic from lockImageRoute.js
 app.use(lockImageRoute);
 
-app.get("/private", isLoggedIn, (req, res) => {
-  const { uid, email } = req.user;
-  res.status(200).json({ message: "Private route", uid, email });
-});
-
 // Définition de asyncHandler pour la gestion des erreurs asynchrones
 const asyncHandler = (fn) => (req, res, next) =>
   Promise.resolve(fn(req, res, next)).catch(next);
@@ -50,16 +37,6 @@ app.post("/login", asyncHandler(async (req, res) => {
 
     // Récupérer le token d'authentification
     const idToken = await userCredential.user.getIdToken();
-
-    mg.messages
-	.create("sandbox2d9138016dc54e54a5454dafc5d0a227.mailgun.org", {
-		from: "Mailgun Sandbox <postmaster@sandbox2d9138016dc54e54a5454dafc5d0a227.mailgun.org>",
-		to: ["nguiquerro@myges.fr"],
-		subject: "Hello",
-		text: "Testing some Mailgun awesomness!",
-	})
-	.then(msg => console.log(msg)) // logs response data
-	.catch(err => console.log(err)); // logs any error`;
 
     // Envoyer le token d'authentification au client
     res.cookie('token', idToken);
