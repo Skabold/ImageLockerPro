@@ -44,8 +44,8 @@ async function sendMail() {
             subject: "Your Image has been delivred",
             text: "Thans for your contributing :D !",
         })
-        .then(msg => console.log(msg)) // logs response data
-        .catch(err => console.log(err)); // logs any error`;
+        .then(msg => console.log(msg))
+        .catch(err => console.log(err));
 }
 
 async function createBucket(lockBucketName) {
@@ -62,7 +62,14 @@ async function stockImage(lockBucketName, req, res) {
         return res.status(400).json({ error: 'No image provided' });
     }
 
-    const fileName = imageFile.originalname;
+    const username = req.body.user;
+
+    if (!username) {
+        return res.status(400).json({ error: 'No username provided' });
+    }
+    const date = Date.now();
+    console.log(date)
+    const fileName = username + "|" + date + "|" + imageFile.originalname;
     const fileBuffer = imageFile.buffer;
 
     await minioClient.putObject(lockBucketName, fileName, fileBuffer, fileBuffer.length);
