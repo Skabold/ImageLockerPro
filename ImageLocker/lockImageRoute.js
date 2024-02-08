@@ -2,6 +2,8 @@ const express = require("express");
 const multer = require('multer');
 const Minio = require('minio');
 
+const isLoggedIn = require('./middleware/userMiddleware');
+
 const minioClient = new Minio.Client({
     endPoint: '127.0.0.1',
     port: 9000,
@@ -13,7 +15,7 @@ const minioClient = new Minio.Client({
 const router = express.Router();
 const upload = multer();
 
-router.post("/lockImage", upload.single('image'), async (req, res, next) => {
+router.post("/lockImage", isLoggedIn, upload.single('image'), async (req, res, next) => {
     const lockBucketName = "lock-bucket";
     try {
         await createBucket(lockBucketName);
