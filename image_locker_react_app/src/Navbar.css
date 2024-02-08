@@ -1,0 +1,37 @@
+.Navbar {
+  background-color: #333;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+.Navbar img {
+  height: 40px;
+}
+
+.Navbar nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.Navbar nav ul li {
+  margin-right: 1rem;
+}
+
+.Navbar nav ul li:last-child {
+  margin-right: 0;
+}
+
+.Navbar nav ul li a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.Navbar nav ul li a:hover {
+  color: #ddd;
+}

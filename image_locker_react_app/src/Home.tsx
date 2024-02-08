@@ -1,20 +1,25 @@
-import * as React from "react";
+// Home.js
 
-import logo from "./logo.svg";
-
-/**
- * Our Web Application
- */
+import React from "react";
+import Navbar from "./Navbar";
+import "./Home.css";
 export default function Home() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1 className="App-title">Welcome to Here</h1>
-      </header>
-      <p className="App-intro">
-        To get started, edit <code>src/App.tsx</code> and save to reload.
-      </p>
-    </div>
+    <>
+      <Navbar />
+      <div className="Home">
+        <main>
+          <p>Home</p>
+          <p>
+            Welcome to ImageLockerPro, Register then login then you can go and lock image in our bucket (we will send
+            you a confirmation email).
+          </p>
+          <p>PS : you won't see the image ever again</p>
+          <p>
+            PS2 : we haven't paid the email service so we are the one receiving the mail, we can't change that sorry
+          </p>
+        </main>
+      </div>
+    </>
   );
 }

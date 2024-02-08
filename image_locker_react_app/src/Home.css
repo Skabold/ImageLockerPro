@@ -1,0 +1,61 @@
+/* Home.css */
+
+.Home {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+header {
+  background-color: #333;
+  color: white;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  font-size: 2rem;
+  margin: 0;
+}
+
+header nav {
+  display: flex;
+}
+
+header nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 1rem;
+  transition: color 0.3s ease;
+}
+
+header nav a:hover {
+  color: #ddd;
+}
+
+main {
+  padding: 2rem;
+}
+
+main p {
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+main p:first-child {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.main-info {
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.ps-text {
+  font-style: italic;
+}
