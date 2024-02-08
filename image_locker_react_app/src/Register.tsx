@@ -11,7 +11,7 @@ export default function Register() {
     e.preventDefault();
 
     try {
-      const apiUrl = `https:/127.0.0.1:3000/register`;
+      const apiUrl = `https://localhost:3000/register`;
 
       const response = await axios.post(apiUrl, {
         email,
@@ -20,7 +20,7 @@ export default function Register() {
 
       console.log(response.data);
 
-      // Redirigez l'utilisateur vers /login après l'enregistrement réussi
+      // Redirect the user to /login after successful registration
       window.location.href = "/login";
     } catch (error) {
       console.error("Error registering user", error);

@@ -1,7 +1,7 @@
 const express = require("express");
 const serverless = require("serverless-http");
 const lockImageRoute = require("./lockImageRoute");
-
+const cors = require("cors"); // Import CORS module
 const app = express();
 app.use(express.json());
 const firebase = require('firebase/compat/app');
@@ -18,6 +18,16 @@ admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
 });
 
+
+
+// Enable CORS for all routes
+app.use(cors());
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 app.use(express.json());
 
@@ -76,7 +86,6 @@ app.post("/register", asyncHandler(async (req, res) => {
     res.status(400).json({ error: "User registration failed", details: error.message });
   }
 }));
-
 
 // Middleware "Not Found" doit être placé à la fin
 app.use((req, res, next) => {

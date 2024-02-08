@@ -14,6 +14,8 @@ export const home = async (event: APIGatewayEvent, _context: Context): Promise<A
     return {
       statusCode: 200,
       headers: {
+        "Access-Control-Allow-Origin": "*",  // Allow requests from any origin
+        "Access-Control-Allow-Credentials": true,
         "Content-Type": "text/html",
       },
       body: await render(event,Home),
@@ -25,6 +27,8 @@ export const home = async (event: APIGatewayEvent, _context: Context): Promise<A
     return {
       statusCode: 500,
       headers: {
+        "Access-Control-Allow-Origin": "*",  // Allow requests from any origin
+        "Access-Control-Allow-Credentials": true,
         "Content-Type": "text/html",
       },
       body: `<html><body>${error.toString()}</body></html>`,
@@ -40,6 +44,8 @@ export const login = async (event: APIGatewayEvent, _context: Context): Promise<
     return {
       statusCode: 200,
       headers: {
+        "Access-Control-Allow-Origin": "*",  // Allow requests from any origin
+        "Access-Control-Allow-Credentials": true,
         "Content-Type": "text/html",
       },
       body: await render(event,Login),
@@ -51,6 +57,8 @@ export const login = async (event: APIGatewayEvent, _context: Context): Promise<
     return {
       statusCode: 500,
       headers: {
+        "Access-Control-Allow-Origin": "*",  // Allow requests from any origin
+        "Access-Control-Allow-Credentials": true,
         "Content-Type": "text/html",
       },
       body: `<html><body>${error.toString()}</body></html>`,
@@ -66,6 +74,8 @@ export const register = async (event: APIGatewayEvent, _context: Context): Promi
     return {
       statusCode: 200,
       headers: {
+        "Access-Control-Allow-Origin": "*",  // Allow requests from any origin
+        "Access-Control-Allow-Credentials": true,
         "Content-Type": "text/html",
       },
       body: await render(event,Register),
@@ -77,6 +87,8 @@ export const register = async (event: APIGatewayEvent, _context: Context): Promi
     return {
       statusCode: 500,
       headers: {
+        "Access-Control-Allow-Origin": "*",  // Allow requests from any origin
+        "Access-Control-Allow-Credentials": true,
         "Content-Type": "text/html",
       },
       body: `<html><body>${error.toString()}</body></html>`,
@@ -92,6 +104,8 @@ export const lock = async (event: APIGatewayEvent, _context: Context): Promise<A
     return {
       statusCode: 200,
       headers: {
+        "Access-Control-Allow-Origin": "*",  // Allow requests from any origin
+        "Access-Control-Allow-Credentials": true,
         "Content-Type": "text/html",
       },
       body: await render(event,Lock),
@@ -103,6 +117,8 @@ export const lock = async (event: APIGatewayEvent, _context: Context): Promise<A
     return {
       statusCode: 500,
       headers: {
+        "Access-Control-Allow-Origin": "*",  // Allow requests from any origin
+        "Access-Control-Allow-Credentials": true,
         "Content-Type": "text/html",
       },
       body: `<html><body>${error.toString()}</body></html>`,

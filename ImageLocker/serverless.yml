@@ -9,20 +9,10 @@ provider:
   runtime: nodejs18.x
   httpApi:
     name: image-locker-api
+    cors: true
 
 functions:
   LockerImagePro:
     handler: index.handler
     events:
-      - httpApi:
-          path: /lockImage
-          method: post
-      - httpApi:
-          path: /private
-          method: get
-      - httpApi:
-          path: /login
-          method: post
-      - httpApi:
-          path: /register
-          method: post
+      - httpApi: "*"
