@@ -5,7 +5,7 @@ import { APIGatewayEvent } from "aws-lambda";
 import * as React from "react";
 import { renderToString } from "react-dom/server";
 
-import App from "../App";
+import App from "../Home";
 import ConfigContext from "../components/ConfigContext";
 import config from "./config";
 import html from "./html";

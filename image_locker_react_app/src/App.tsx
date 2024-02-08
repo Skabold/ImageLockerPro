@@ -1,24 +1,21 @@
-import "./App.css";
+import { Router, Route, Switch } from "wouter";
+import React from "react";
+import ReactDOM from "react-dom";
 
-import * as React from "react";
+import Home from "./Home";
+import Lock from "./Lock";
+import Login from "./Login";
+import Register from "./Register";
 
-import useConfig from "./components/useConfig";
-import logo from "./logo.svg";
+const App = () => (
+  <Router>
+    <Switch>
+      <Route path="/" component={Home} />
+      <Route path="/login" component={Login} />
+      <Route path="/register" component={Register} />
+      <Route path="/lock" component={Lock} />
+    </Switch>
+  </Router>
+);
 
-/**
- * Our Web Application
- */
-export default function App() {
-  const config = useConfig();
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1 className="App-title">Welcome to {config.app.TITLE}</h1>
-      </header>
-      <p className="App-intro">
-        To get started, edit <code>src/App.tsx</code> and save to reload.
-      </p>
-    </div>
-  );
-}
+ReactDOM.render(<App />, document.getElementById("root"));
