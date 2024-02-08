@@ -6,7 +6,6 @@ const app = express();
 app.use(express.json());
 const firebase = require('firebase/compat/app');
 require('firebase/compat/auth');
-const isLoggedIn = require('./middleware/userMiddleware');
 const firebaseConfig = require('./config/firebaseConfig');
 
 // Initialiser Firebase
@@ -24,11 +23,6 @@ app.use(express.json());
 
 // The lock image route / logic from lockImageRoute.js
 app.use(lockImageRoute);
-
-app.get("/private", isLoggedIn, (req, res) => {
-  const { uid, email } = req.user;
-  res.status(200).json({ message: "Private route", uid, email });
-});
 
 // Définition de asyncHandler pour la gestion des erreurs asynchrones
 const asyncHandler = (fn) => (req, res, next) =>
