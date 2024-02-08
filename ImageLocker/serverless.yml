@@ -17,12 +17,6 @@ functions:
       - httpApi:
           path: /lockImage
           method: ANY
-      - httpApi: 
-          path: /
-          method: get
-      - httpApi: 
-          path: /path
-          method: get
       - httpApi:
           path: /private
           method: get
@@ -32,8 +26,3 @@ functions:
       - httpApi:
           path: /register
           method: post
-
-plugins:
-  - serverless-offline
-
-

@@ -13,7 +13,7 @@ const firebaseConfig = require('./config/firebaseConfig');
 firebase.initializeApp(firebaseConfig);
 
 const admin = require("firebase-admin");
-const serviceAccount = require("./config/firebaseServiceAcountKey.json");
+const serviceAccount = require("./config/firebaseServiceAccountKey.json");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
@@ -64,7 +64,7 @@ app.post("/register", asyncHandler(async (req, res) => {
       email,
       password,
     });
-    
+
     res.status(200).json({
       status: 'success',
       msg: "User registered and logged in",
