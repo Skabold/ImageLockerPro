@@ -16,7 +16,7 @@ functions:
     events:
       - httpApi:
           path: /lockImage
-          method: ANY
+          method: post
       - httpApi:
           path: /private
           method: get
