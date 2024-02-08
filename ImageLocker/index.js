@@ -1,5 +1,7 @@
-const serverless = require("serverless-http");
 const express = require("express");
+const serverless = require("serverless-http");
+const lockImageRoute = require("./lockImageRoute");
+
 const app = express();
 app.use(express.json());
 const firebase = require('firebase/compat/app');
@@ -18,17 +20,10 @@ admin.initializeApp({
 });
 
 
-app.get("/", (req, res, next) => {
-  return res.status(200).json({
-    message: "Hello from root!",
-  });
-});
+app.use(express.json());
 
-app.get("/path", (req, res, next) => {
-  return res.status(200).json({
-    message: "Hello from path!",
-  });
-});
+// The lock image route / logic from lockImageRoute.js
+app.use(lockImageRoute);
 
 app.get("/private", isLoggedIn, (req, res) => {
   const { uid, email } = req.user;

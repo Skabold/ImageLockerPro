@@ -1,5 +1,5 @@
 service: ImageLocker
-frameworkVersion: '3'
+frameworkVersion: "3"
 
 plugins:
   - serverless-offline
@@ -7,11 +7,16 @@ plugins:
 provider:
   name: aws
   runtime: nodejs18.x
+  httpApi:
+    name: image-locker-api
 
 functions:
-  api:
+  lockImage:
     handler: index.handler
     events:
+      - httpApi:
+          path: /lockImage
+          method: ANY
       - httpApi: 
           path: /
           method: get
@@ -27,4 +32,8 @@ functions:
       - httpApi:
           path: /register
           method: post
+
+plugins:
+  - serverless-offline
+
 
