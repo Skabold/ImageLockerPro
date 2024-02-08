@@ -10,9 +10,13 @@ Pour lancer l'appli:
     ```
 2. installer les dépendances:
     ```bash
+    npm install
+    ```
+3. installer les dépendances:
+    ```bash
     npm run build:browser
     ```
-3. lancer l'appli serverless:
+4. lancer l'appli serverless:
     ```bash
     npx serverless offline start
     ```

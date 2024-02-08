@@ -1,0 +1,3 @@
+[submodule "serverless-react-boilerplate"]
+	path = serverless-react-boilerplate
+	url = https://github.com/arabold/serverless-react-boilerplate.git
