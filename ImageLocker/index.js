@@ -1,18 +1,13 @@
-const serverless = require("serverless-http");
 const express = require("express");
+const serverless = require("serverless-http");
+const lockImageRoute = require("./lockImageRoute");
+
 const app = express();
 
-app.get("/", (req, res, next) => {
-  return res.status(200).json({
-    message: "Hello from root!",
-  });
-});
+app.use(express.json());
 
-app.get("/path", (req, res, next) => {
-  return res.status(200).json({
-    message: "Hello from path!",
-  });
-});
+// The lock image route / logic from lockImageRoute.js
+app.use(lockImageRoute);
 
 app.use((req, res, next) => {
   return res.status(404).json({
