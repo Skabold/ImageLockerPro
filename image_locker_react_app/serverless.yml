@@ -40,7 +40,7 @@ plugins:
 
 functions:
   home:
-    handler: src/server/home.default
+    handler: handler.home
     events:
       - http:
           path: /
@@ -48,7 +48,7 @@ functions:
           cors: true
 
   login:
-    handler: src/server/login.default
+    handler: handler.login
     events:
       - http:
           path: /login
@@ -56,7 +56,7 @@ functions:
           cors: true
 
   register:
-    handler: src/server/register.default
+    handler: handler.register
     events:
       - http:
           path: /register
@@ -64,7 +64,7 @@ functions:
           cors: true
 
   lock:
-    handler: src/server/lock.default
+    handler: handler.lock
     events:
       - http:
           path: /lock
